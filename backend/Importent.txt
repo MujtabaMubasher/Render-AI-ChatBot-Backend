@@ -1,0 +1,26 @@
+/*
+  Type of HTTP Request
+
+  1: GET
+  // if We want to Get Data From backend or Database
+  2: PUT /
+  / If we want to modify, Mutate or Update Some Data
+  3: POST
+  // If we want to send some Data. Such that Create Post
+  4: DELETE
+  // Delete Some Data
+
+*/
+
+
+/*
+
+ DB Details
+
+userName: mujtabamubasher11
+password: oDyzNwgwG927P99g
+101.53.234.160 / 0.0.0.0/0  (includes your current IP address)
+mongodb+srv://mujtabamubasher11:<password>@cluster0.7pgllsa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+
+*/
