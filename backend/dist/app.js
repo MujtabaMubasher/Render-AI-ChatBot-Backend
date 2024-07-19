@@ -40,7 +40,7 @@ app.post('/api/v1/user/login', (req, res, next) => {
   res.json({ /* login response */ });
     next();
 },router);
-app.use("/api/v1", router);
+//app.use("/api/v1", router);
 export default app;
 /*
   Type of HTTP Request
