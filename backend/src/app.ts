@@ -16,6 +16,7 @@ const allowedOrigins = ['https://mujtaba-gpt.vercel.app'];
 
 const corsOptions = {
   origin: function (origin, callback) {
+    console.log(`Origin: ${origin}`);
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -27,10 +28,7 @@ const corsOptions = {
   allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"]
 };
 
-// Apply CORS middleware to all routes
 app.use(cors(corsOptions));
-
-// Explicitly handle preflight requests
 app.options('*', cors(corsOptions));
 
 // Middleware to log request headers for debugging
