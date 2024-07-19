@@ -12,12 +12,12 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 const allowedOrigin = "https://mujtaba-gpt.vercel.app";
 app.use(cors({
-    origin: allowedOrigin,
+    origin: '*',
     credentials: true
 }));
 
 app.options(cors({
-    origin: allowedOrigin,
+    origin: '*',
     credentials: true
 })); // Preflight request handling
 // Middleware to clear unwanted cookies
