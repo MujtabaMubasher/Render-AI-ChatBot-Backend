@@ -13,11 +13,23 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
-const allowedOrigin = ['https://mujtaba-gpt.vercel.app'];
+const allowedOrigins = ['https://mujtaba-gpt.vercel.app'];
 
-app.use(cors({
-  origin:"*", 
-  credentials: true}));
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"]
+};
+
+// Apply CORS middleware to all routes
+app.use(cors(corsOptions));
 
 
   // Middleware to clear unwanted cookies
