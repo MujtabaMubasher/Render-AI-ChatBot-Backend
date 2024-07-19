@@ -1,9 +1,16 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "dist/index.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-      { "src": "/(.*)", "dest": "dist/index.js" }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    { "src": "dist/index.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/index.js",
+      "methods": ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+      "headers": {
+        "Access-Control-Allow-Origin": "https://mujtaba-gpt.vercel.app",
+      }
+    }
+  ]
+}
