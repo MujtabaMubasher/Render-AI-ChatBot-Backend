@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 const allowedOrigin = "https://mujtaba-gpt.vercel.app";
 app.use(cors({
-    origin: 'https://mujtaba-gpt.vercel.app',
+    origin: ['https://mujtaba-gpt.vercel.app'],
     credentials: true
 }));
 
@@ -32,6 +32,14 @@ app.use(cors({
 // });
 // remove it in production
 app.use(morgan("dev"));
+
+app.post('/api/v1/user/login', (req, res, next) => {
+  // ... login logic ...
+  res.header('Access-Control-Allow-Origin', 'https://mujtaba-gpt.vercel.app');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.json({ /* login response */ });
+    next();
+},router);
 app.use("/api/v1", router);
 export default app;
 /*
