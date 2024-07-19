@@ -83,7 +83,7 @@ const login = async (req, res) => {
       accessToken,
       {
         path: "/",
-        domain: "localhost",
+        domain: "mujtaba-gpt.vercel.app",
         expires,
         httpOnly: true,
         signed: true,
@@ -152,7 +152,7 @@ const logout = async (req, res) => {
       COOKIE_NAME,
     {
       httpOnly: false,
-      domain: "localhost",
+      domain: "mujtaba-gpt.vercel.app",
       signed: true,
       path: "/",
       secure: true
