@@ -15,6 +15,11 @@ app.use(cors({
     origin: allowedOrigin,
     credentials: true
 }));
+
+app.options('*', cors({
+    origin: allowedOrigin,
+    credentials: true
+})); // Preflight request handling
 // Middleware to clear unwanted cookies
 // app.use((req, res, next) => {
 //   res.clearCookie(".Tunnels.Relay.WebForwarding.Cookies", {
