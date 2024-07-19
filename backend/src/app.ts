@@ -17,8 +17,7 @@ const allowedOrigin = "https://mujtaba-gpt.vercel.app";
 
 app.use(cors({
   origin: 'https://mujtaba-gpt.vercel.app', // or 'https://mujtaba-gpt.vercel.app'
-  credentials: true,
-  headers: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization']
+  credentials: true
 }));
 
 
@@ -36,12 +35,7 @@ app.use(cors({
 // remove it in production
 app.use(morgan("dev"));
 
-app.use("/api/v1", (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://mujtaba-gpt.vercel.app"); // or 'https://mujtaba-gpt.vercel.app'
-  next();
-}, router);
-
-//app.use("/api/v1", router);
+app.use("/api/v1", router);
 
 export default app
 
