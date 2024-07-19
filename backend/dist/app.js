@@ -4,48 +4,37 @@ import morgan from "morgan";
 import router from "./routes/router.js";
 import cookieParser from "cookie-parser";
 import cors from 'cors';
+
 config();
+
 const app = express();
-// use for Read some data from client side
+
 // Middlewares
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
+
 // CORS configuration
 const allowedOrigin = "https://mujtaba-gpt.vercel.app";
-app.use(cors({
+
+const corsOptions = {
     origin: allowedOrigin,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
 
 // Handle preflight requests
-app.options('*', cors({
-    origin: allowedOrigin,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}));
+app.options('*', cors(corsOptions));
 
-/*app.options(cors({
-    origin: '*',
-    credentials: true
-}));*/ // Preflight request handling
-// Middleware to clear unwanted cookies
-// app.use((req, res, next) => {
-//   res.clearCookie(".Tunnels.Relay.WebForwarding.Cookies", {
-//     path: "/",
-//     domain: "turbo-winner-9xg9g96xqp5fpr79-5137.app.github.dev",
-//     httpOnly: true,
-//     secure: true,
-//   });
-//   next();
-// });
-// remove it in production
+// Logging middleware
 app.use(morgan("dev"));
 
+// Routes
 app.use("/api/v1", router);
 
+// Default response for other routes
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", allowedOrigin);
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -53,36 +42,5 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
+
 export default app;
-/*
-  Type of HTTP Request
-  1: GET
-  // if We want to Get Data From backend or Database
-  2: PUT /
-  / If we want to modify, Mutate or Update Some Data
-  3: POST
-  // If we want to send or Read some Data From Client. Such that Create Post
-  4: DELETE
-  // Delete Some Data
-*/
-/*
-app.get("/hello", (req,res,next)=>{
-      return res.send("Get Request");
-})
-
-app.post("/posts", (req,res,next)=>{
-  console.log(req.body.name);
-  return res.send("Post Request");
-})
-app.put("/put", (req,res,next)=>{
-  console.log(req.body.name);
-  return res.send("put Request");
-})
-
-app.delete("/user/:id", (req,res,next)=>{
-  console.log(req.params.id);
-  return res.send("delete Request");
-})
-
-*/ 
-//# sourceMappingURL=app.js.map
