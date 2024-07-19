@@ -16,7 +16,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 const allowedOrigin = ['https://mujtaba-gpt.vercel.app'];
 
 app.use(cors({
-  origin: allowedOrigin, 
+  origin:'https://mujtaba-gpt.vercel.app', 
   credentials: true}));
 
 
