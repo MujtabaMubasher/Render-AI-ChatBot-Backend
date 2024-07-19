@@ -56,16 +56,16 @@ const login = async (req, res) => {
         const accessToken = await generateAccessToken(userExist._id, userExist.email, process.env.ACCESS_TOKEN_EXPIRY);
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
-        res.clearCookie(".Tunnels.Relay.WebForwarding.Cookies", {
+        res.clearCookie(COOKIE_NAME, {
             httpOnly: false,
-            domain: "localhost",
+            domain: "mujtaba-gpt.vercel.app",
             signed: true,
             path: "/",
             secure: true
         });
         res.cookie(COOKIE_NAME, accessToken, {
             path: "/",
-            domain: "localhost",
+            domain: "mujtaba-gpt.vercel.app",
             expires,
             httpOnly: true,
             signed: true,
@@ -124,7 +124,7 @@ const logout = async (req, res) => {
     try {
         res.clearCookie(COOKIE_NAME, {
             httpOnly: false,
-            domain: "localhost",
+            domain: "mujtaba-gpt.vercel.app",
             signed: true,
             path: "/",
             secure: true
