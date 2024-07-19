@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-const allowedOrigins = ['https://mujtaba-gpt.vercel.app', 'http://localhost:5173'];
+const allowedOrigins = ['https://mujtaba-gpt.vercel.app'];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -39,17 +39,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Middleware to set CORS headers explicitly
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  next();
-});
 
 // Test route to verify CORS
 app.get('/api/v1/test-cors', (req, res) => {
