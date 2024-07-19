@@ -8,6 +8,7 @@ const generateAccessToken = async (_id, email, expiresIn) => {
             email
         };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
+        console.log(token)
         return token;
     }
     catch (error) {
