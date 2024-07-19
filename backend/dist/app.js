@@ -11,7 +11,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 const allowedOrigin = "https://mujtaba-gpt.vercel.app";
-app.use(cors());
+app.use(cors({
+    origin: 'https://mujtaba-gpt.vercel.app',
+    credentials: true
+}));
 
 /*app.options(cors({
     origin: '*',
