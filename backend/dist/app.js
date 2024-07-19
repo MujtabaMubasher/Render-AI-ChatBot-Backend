@@ -18,7 +18,6 @@ const allowedOrigin = "https://mujtaba-gpt.vercel.app";
 
 const corsOptions = {
     origin: allowedOrigin,
-    methods: ['POST'],
     credentials: true
 };
 
