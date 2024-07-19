@@ -16,8 +16,13 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 const allowedOrigin = "https://mujtaba-gpt.vercel.app";
 
 app.use(cors({
-  origin: allowedOrigin,
-  Access-Control-Allow-Origin:  'https://mujtaba-gpt.vercel.app',
+  origin: 'https://mujtaba-gpt.vercel.app',
+  "headers": {
+        "Access-Control-Allow-Origin": "https://mujtaba-gpt.vercel.app",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+        "Access-Control-Allow-Methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+      },
   credentials: true}));
 
 
