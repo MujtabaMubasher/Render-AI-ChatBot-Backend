@@ -54,6 +54,11 @@ const login = async (req, res) => {
             return res.status(401).send("Password is Invalid");
         }
         const accessToken = await generateAccessToken(userExist._id, userExist.email, process.env.ACCESS_TOKEN_EXPIRY);
+        if (!accessToken) {
+            return res.status(500).send("Failed to generate access token");
+        } else{
+            return res.status(201).send("generate access token successful");
+        }
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
         // res.clearCookie(COOKIE_NAME, {
