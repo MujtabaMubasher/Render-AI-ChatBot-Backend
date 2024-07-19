@@ -56,20 +56,21 @@ const login = async (req, res) => {
         const accessToken = await generateAccessToken(userExist._id, userExist.email, process.env.ACCESS_TOKEN_EXPIRY);
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
-        res.clearCookie(COOKIE_NAME, {
-            httpOnly: false,
-            domain: "mujtaba-gpt.vercel.app",
-            signed: true,
-            path: "/",
-            secure: true
-        });
+        // res.clearCookie(COOKIE_NAME, {
+        //     httpOnly: false,
+        //     domain: "mujtaba-gpt.vercel.app",
+        //     signed: true,
+        //     path: "/",
+        //     secure: true
+        // });
         res.cookie(COOKIE_NAME, accessToken, {
             path: "/",
-            domain: "https://mujtaba-gpt.vercel.app/",
+            domain: "mujtaba-gpt.vercel.app",
             expires,
             httpOnly: true,
             signed: true,
             secure: true,
+            sameSite: "None",
         });
         const userLogin = await User.findById(userExist._id).select("-password");
         return res.status(200).json({
@@ -124,7 +125,7 @@ const logout = async (req, res) => {
     try {
         res.clearCookie(COOKIE_NAME, {
             httpOnly: false,
-            domain: "https://mujtaba-gpt.vercel.app/",
+            domain: "mujtaba-gpt.vercel.app",
             signed: true,
             path: "/",
             secure: true
