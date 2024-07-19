@@ -16,14 +16,10 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 const allowedOrigin = "https://mujtaba-gpt.vercel.app";
 
 app.use(cors({
-  origin: 'https://mujtaba-gpt.vercel.app',
-  "headers": {
-        "Access-Control-Allow-Origin": "https://mujtaba-gpt.vercel.app",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-        "Access-Control-Allow-Methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
-      },
-  credentials: true}));
+  origin: '*', // or 'https://mujtaba-gpt.vercel.app'
+  credentials: true,
+  headers: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization']
+}));
 
 
   // Middleware to clear unwanted cookies
@@ -41,7 +37,7 @@ app.use(cors({
 app.use(morgan("dev"));
 
 app.use("/api/v1", (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // or 'https://mujtaba-gpt.vercel.app'
+  res.header("Access-Control-Allow-Origin", "https://mujtaba-gpt.vercel.app"); // or 'https://mujtaba-gpt.vercel.app'
   next();
 }, router);
 
