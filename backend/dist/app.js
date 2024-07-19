@@ -31,10 +31,6 @@ app.options('*', cors(corsOptions));
 // Logging middleware
 app.use(morgan("dev"));
 
-// Routes
-app.use("/api/v1", router);
-
-// Default response for other routes
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", allowedOrigin);
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -42,5 +38,11 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
+
+
+// Routes
+app.use("/api/v1", router);
+
+// Default response for other routes
 
 export default app;
