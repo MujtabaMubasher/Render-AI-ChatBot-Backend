@@ -63,6 +63,8 @@ const login = async (req, res) => {
         //     path: "/",
         //     secure: true
         // });
+
+        console.log(accessToken)
         res.cookie(COOKIE_NAME, accessToken, {
             path: "/",
             domain: "mujtaba-gpt.vercel.app",
