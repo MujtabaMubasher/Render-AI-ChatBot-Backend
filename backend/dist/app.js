@@ -10,10 +10,21 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
+// CORS configuration
 const allowedOrigin = "https://mujtaba-gpt.vercel.app";
 app.use(cors({
-    origin: 'https://mujtaba-gpt.vercel.app',
-    //credentials: true
+    origin: allowedOrigin,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
+
+// Handle preflight requests
+app.options('*', cors({
+    origin: allowedOrigin,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
 
 /*app.options(cors({
