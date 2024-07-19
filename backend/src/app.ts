@@ -3,7 +3,8 @@ import { config } from "dotenv";
 import morgan from "morgan"
 import router from "./routes/router.js";
 import cookieParser from "cookie-parser";
-import cors from 'cors'
+var cors = require('cors')
+//import cors from 'cors'
 
 config();
 const app = express();
@@ -15,10 +16,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 
 const allowedOrigin = "https://mujtaba-gpt.vercel.app";
 
-app.use(cors({
-  origin: 'https://mujtaba-gpt.vercel.app', // or 'https://mujtaba-gpt.vercel.app'
-  credentials: true
-}));
+app.use(cors());
 
 
   // Middleware to clear unwanted cookies
