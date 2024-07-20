@@ -72,7 +72,7 @@ const login = async (req, res) => {
             path: "/",
             domain: "/",
             expires,
-            httpOnly: false,
+            httpOnly: true,
             signed: true,
             secure: true,
             sameSite: "none",
