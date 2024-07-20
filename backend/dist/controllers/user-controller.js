@@ -46,12 +46,12 @@ const login = async (req, res) => {
     const userExist = await User.findOne({ email });
 
     if (!userExist) {
-      return res.status(401).send("This email does not exist");
+      return res.status(401).json({messaage: "This email doest not Exist"}); 
     }
 
     const isPasswordValid = await userExist.isPasswordCorrect(password);
     if (!isPasswordValid) {
-      return res.status(401).send("Password is invalid");
+     return res.status(401).json({messaage: "Password is Invalid"});
     }
 
     const accessToken = await generateAccessToken(userExist._id, userExist.email, process.env.ACCESS_TOKEN_EXPIRY);
