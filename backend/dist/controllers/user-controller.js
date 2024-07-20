@@ -56,8 +56,6 @@ const login = async (req, res) => {
         const accessToken = await generateAccessToken(userExist._id, userExist.email, process.env.ACCESS_TOKEN_EXPIRY);
         if (!accessToken) {
             return res.status(500).send("Failed to generate access token");
-        } else{
-            return res.status(201).send("generate access token successful");
         }
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
@@ -69,7 +67,7 @@ const login = async (req, res) => {
         //     secure: true
         // });
 
-        console.log(accessToken)
+       // console.log(accessToken)
         res.cookie(COOKIE_NAME, accessToken, {
             path: "/",
             domain: "mujtaba-gpt.vercel.app",
