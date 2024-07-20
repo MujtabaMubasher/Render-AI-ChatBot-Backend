@@ -69,7 +69,7 @@ const login = async (req, res) => {
 
        // console.log(accessToken)
         res.cookie(COOKIE_NAME, accessToken, {
-            // path: "/",
+            path: "/",
             // domain: "/",
             expires,
             httpOnly: true,
