@@ -75,7 +75,7 @@ const login = async (req, res) => {
             httpOnly: true,
             signed: true,
             secure: true,
-            //sameSite: "Strict",
+            sameSite: "none",
         });
         const userLogin = await User.findById(userExist._id).select("-password");
         return res.status(200).json({
