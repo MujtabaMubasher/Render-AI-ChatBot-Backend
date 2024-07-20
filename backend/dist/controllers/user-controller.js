@@ -68,6 +68,7 @@ const login = async (req, res) => {
       httpOnly: true,
       signed: true,
       secure: true,
+      sameSite: 'none'
     };
 
     try {
