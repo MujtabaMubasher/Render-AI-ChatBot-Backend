@@ -71,9 +71,9 @@ const login = async (req, res) => {
         res.cookie(COOKIE_NAME, accessToken, {
             // path: "/",
             // domain: "/",
-            // expires,
+            expires,
             httpOnly: true,
-            //signed: true,
+            signed: true,
             secure: true,
             //sameSite: "Strict",
         });
