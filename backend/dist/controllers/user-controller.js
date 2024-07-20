@@ -70,7 +70,7 @@ const login = async (req, res) => {
        // console.log(accessToken)
         res.cookie(COOKIE_NAME, accessToken, {
             path: "/",
-            domain: "/",
+            domain: "mujtaba-gpt.vercel.app",
             expires,
             httpOnly: true,
             signed: true,
