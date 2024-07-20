@@ -59,23 +59,23 @@ const login = async (req, res) => {
         }
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
-        // res.clearCookie(COOKIE_NAME, {
-        //     httpOnly: false,
-        //     domain: "mujtaba-gpt.vercel.app",
-        //     signed: true,
-        //     path: "/",
-        //     secure: true
-        // });
+        res.clearCookie(COOKIE_NAME, {
+            httpOnly: false,
+            domain: "mujtaba-gpt.vercel.app",
+            signed: true,
+            path: "/",
+            secure: true
+        });
 
        // console.log(accessToken)
         res.cookie(COOKIE_NAME, accessToken, {
             path: "/",
             domain: "mujtaba-gpt.vercel.app",
-            expires,
-            httpOnly: false,
-            signed: false,
-            secure: false,
-            sameSite: "none",
+            //expires,
+            httpOnly: true,
+            signed: true,
+            secure: true,
+            //sameSite: "none",
         });
         const userLogin = await User.findById(userExist._id).select("-password");
         return res.status(200).json({
