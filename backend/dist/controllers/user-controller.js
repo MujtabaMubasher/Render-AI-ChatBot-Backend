@@ -67,8 +67,8 @@ const login = async (req, res) => {
       //domain: "mujtaba-gpt.vercel.app",  
       expires,
       httpOnly: true,
-      signed: true,
-      //secure: true,
+      //signed: true,
+      secure: true,
       sameSite: 'none'
     };
 
