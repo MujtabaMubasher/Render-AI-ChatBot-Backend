@@ -64,10 +64,9 @@ const login = async (req, res) => {
 
     const cookieOptions = {
       path: "/",
-      //domain: "mujtaba-gpt.vercel.app",  
       expires,
       httpOnly: true,
-      //signed: true,
+      signed: true,
       secure: true,
       sameSite: 'none'
     };
