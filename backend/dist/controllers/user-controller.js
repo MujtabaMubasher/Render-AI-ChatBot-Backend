@@ -69,12 +69,12 @@ const login = async (req, res) => {
 
        // console.log(accessToken)
         res.cookie(COOKIE_NAME, accessToken, {
-            path: "/",
-            domain: "mujtaba-gpt.vercel.app",
-            expires,
-            //httpOnly: true,
+            // path: "/",
+            // domain: "/",
+            // expires,
+            httpOnly: true,
             //signed: true,
-            //secure: true,
+            secure: true,
             //sameSite: "Strict",
         });
         const userLogin = await User.findById(userExist._id).select("-password");
