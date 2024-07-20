@@ -74,7 +74,7 @@ const login = async (req, res) => {
             expires,
             httpOnly: true,
             signed: true,
-            secure: true,
+            secure: false,
             sameSite: "None",
         });
         const userLogin = await User.findById(userExist._id).select("-password");
