@@ -72,10 +72,10 @@ const login = async (req, res) => {
             path: "/",
             domain: "mujtaba-gpt.vercel.app",
             expires,
-            httpOnly: true,
-            signed: true,
-            secure: true,
-            sameSite: "None",
+            httpOnly: false,
+            signed: false,
+            secure: false,
+            sameSite: "none",
         });
         const userLogin = await User.findById(userExist._id).select("-password");
         return res.status(200).json({
