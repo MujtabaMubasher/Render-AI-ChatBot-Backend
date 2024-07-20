@@ -69,8 +69,8 @@ const login = async (req, res) => {
 
        // console.log(accessToken)
         res.cookie(COOKIE_NAME, accessToken, {
-            path: "/",
-            // domain: "/",
+            //path: "/",
+            domain: "mujtaba-gpt.vercel.app",
             expires,
             httpOnly: true,
             // signed: true,
@@ -128,16 +128,16 @@ const verifyUser = async (req, res) => {
 };
 const logout = async (req, res) => {
     try {
-        res.clearCookie(COOKIE_NAME, {
-            httpOnly: false,
-            domain: "mujtaba-gpt.vercel.app",
-            signed: true,
-            path: "/",
-            secure: true
-        });
-        return res.status(200).json({
-            message: "Logout Successful"
-        });
+        // res.clearCookie(COOKIE_NAME, {
+        //     httpOnly: false,
+        //     domain: "mujtaba-gpt.vercel.app",
+        //     signed: true,
+        //     path: "/",
+        //     secure: true
+        // });
+        // return res.status(200).json({
+        //     message: "Logout Successful"
+        // });
     }
     catch (error) {
         console.error("Error Login user:", error);
