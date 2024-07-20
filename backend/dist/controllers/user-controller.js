@@ -41,59 +41,52 @@ const signUp = async (req, res) => {
     }
 };
 const login = async (req, res) => {
-    try {
-        //console.log("Login request received:", req.body);
-        const { email, password } = req.body;
-        const userExist = await User.findOne({ email });
-        if (!userExist) {
-            return res.status(401).send("This email doest not Exist");
-        }
-        //console.log(user);
-        const isPasswordValid = await userExist.isPasswordCorrect(password);
-        if (!isPasswordValid) {
-            return res.status(401).send("Password is Invalid");
-        }
-        const accessToken = await generateAccessToken(userExist._id, userExist.email, process.env.ACCESS_TOKEN_EXPIRY);
-        if (!accessToken) {
-            return res.status(500).send("Failed to generate access token");
-        }
-        const expires = new Date();
-        expires.setDate(expires.getDate() + 7);
-        // res.clearCookie(COOKIE_NAME, {
-        //     httpOnly: false,
-        //     domain: "https://mujtaba-gpt.vercel.app",
-        //     signed: true,
-        //     path: "/",
-        //     secure: true
-        // });
+  try {
+    const { email, password } = req.body;
+    const userExist = await User.findOne({ email });
 
-       // console.log(accessToken)
-        try {
-            
-           await res.cookie(COOKIE_NAME, accessToken, {
-            path: "/",
-            domain: "mujtaba-gpt.vercel.app",
-            expires,
-            httpOnly: true,
-            signed: true,
-            secure: true,
-            // sameSite: "none",
-        });
-        }catch(error){
-           console.error("Error Login user:", error);
-           return res.status(500).json({ message: "Something went wrong while Set-Cookies", error: error.message });
-        }
-        const userLogin = await User.findById(userExist._id).select("-password");
-        return res.status(200).json({
-            name: userLogin.username,
-            email: userLogin.email,
-            message: "Login Successful"
-        });
+    if (!userExist) {
+      return res.status(401).send("This email does not exist");
     }
-    catch (error) {
-        console.error("Error Login user:", error);
-        return res.status(500).json({ message: "Something went wrong while Login the user", error: error.message });
+
+    const isPasswordValid = await userExist.isPasswordCorrect(password);
+    if (!isPasswordValid) {
+      return res.status(401).send("Password is invalid");
     }
+
+    const accessToken = await generateAccessToken(userExist._id, userExist.email, process.env.ACCESS_TOKEN_EXPIRY);
+    if (!accessToken) {
+      throw new Error("Failed to generate access token");
+    }
+
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 7);
+
+    const cookieOptions = {
+      path: "/",
+      expires,
+      httpOnly: true,
+      signed: true,
+      secure: true,
+    };
+
+    try {
+      await res.cookie(COOKIE_NAME, accessToken, cookieOptions);
+    } catch (error) {
+      throw new Error(`Error setting cookie: ${error.message}`);
+    }
+
+    const userLogin = await User.findById(userExist._id).select("-password");
+    return res.status(200).json({
+      name: userLogin.username,
+      email: userLogin.email,
+      message: "Login successful",
+    });
+
+  } catch (error) {
+    console.error("Error logging in user:", error);
+    return res.status(500).json({ message: "Something went wrong during login", error: error.message });
+  }
 };
 const verifyUser = async (req, res) => {
     try {
