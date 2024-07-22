@@ -64,7 +64,7 @@ const login = async (req, res) => {
 
     const cookieOptions = {
       path: "/",
-      domain: "render-ai-chat-bot-backend.vercel.app",
+      //domain: "render-ai-chat-bot-backend.vercel.app",
       expires,
       httpOnly: true,
       signed: true,
@@ -131,7 +131,7 @@ const logout = async (req, res) => {
     try {
         res.clearCookie(COOKIE_NAME, {
             httpOnly: false,
-            domain: "render-ai-chat-bot-backend.vercel.app",
+           // domain: "render-ai-chat-bot-backend.vercel.app",
             signed: true,
             path: "/",
             secure: true
