@@ -129,11 +129,11 @@ const verifyUser = async (req, res) => {
 const logout = async (req, res) => {
     try {
         res.clearCookie(COOKIE_NAME, {
-           path: "/",
-           httpOnly: true,
+           httpOnly: false,
+          // domain: "localhost",
            signed: true,
-           secure: true,
-           sameSite: 'none'
+           path: "/",
+           secure: true
         });
         return res.status(200).json({
             message: "Logout Successful"
