@@ -130,7 +130,7 @@ const logout = async (req, res) => {
     try {
         res.clearCookie(COOKIE_NAME, {
            httpOnly: false,
-          // domain: "localhost",
+           domain: "render-ai-chat-bot-backend.vercel.app",
            signed: true,
            path: "/",
            secure: true
