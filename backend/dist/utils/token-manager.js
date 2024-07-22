@@ -17,8 +17,8 @@ const generateAccessToken = async (_id, email, expiresIn) => {
 };
 const verifyAccessToken = async (req, res, next) => {
     try {
-        const token = req.signedCookies[COOKIE_NAME] ||
-                      req.header("Authorization")?.replace("Bearer ", "");
+        const token = req.signedCookies[COOKIE_NAME] /*||
+                      req.header("Authorization")?.replace("Bearer ", "");*/
         //console.log(token);
         if (!token || token.trim() === "") {
             throw new Error("Unauthorized Request: No token provided.");
