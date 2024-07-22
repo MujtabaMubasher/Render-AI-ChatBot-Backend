@@ -64,11 +64,12 @@ const login = async (req, res) => {
 
     const cookieOptions = {
       path: "/",
+      domain: "render-ai-chat-bot-backend.vercel.app",
       expires,
       httpOnly: true,
       signed: true,
       secure: true,
-      sameSite: 'none'
+      sameSite: 'None'
     };
 
     try {
@@ -133,7 +134,8 @@ const logout = async (req, res) => {
            domain: "render-ai-chat-bot-backend.vercel.app",
            signed: true,
            path: "/",
-           secure: true
+           secure: true,
+           sameSite: 'None'
         });
         return res.status(200).json({
             message: "Logout Successful"
