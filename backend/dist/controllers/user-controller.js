@@ -130,9 +130,12 @@ const verifyUser = async (req, res) => {
 const logout = async (req, res) => {
     try {
         options = {
-           httpOnly: true,
-           secure: true,
-           sameSite: 'None'
+            httpOnly: true,
+            domain: "render-ai-chat-bot-backend.vercel.app",
+            signed: true,
+            path: "/",
+            secure: true,
+            sameSite: 'None'
         }
         // res.clearCookie(COOKIE_NAME, {
         //    httpOnly: true,
