@@ -129,7 +129,7 @@ const verifyUser = async (req, res) => {
 };
 const logout = async (req, res) => {
     try {
-        options = {
+       const options = {
             httpOnly: true,
             domain: "render-ai-chat-bot-backend.vercel.app",
             signed: true,
