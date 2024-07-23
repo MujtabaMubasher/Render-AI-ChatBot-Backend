@@ -129,15 +129,19 @@ const verifyUser = async (req, res) => {
 };
 const logout = async (req, res) => {
     try {
-        res.clearCookie(COOKIE_NAME, {
+        options ={
            httpOnly: true,
-           domain: "render-ai-chat-bot-backend.vercel.app",
-           signed: true,
-           path: "/",
-           secure: true,
-           sameSite: 'None'
-        });
-        return res.status(200).json({
+           secure: true
+        }
+        // res.clearCookie(COOKIE_NAME, {
+        //    httpOnly: true,
+        //    domain: "render-ai-chat-bot-backend.vercel.app",
+        //    signed: true,
+        //    path: "/",
+        //    secure: true,
+        //    sameSite: 'None'
+        // });
+        return res.status(200).cclearCookie(COOKIE_NAME, options ).json({
             message: "Logout Successful"
         });
     }
