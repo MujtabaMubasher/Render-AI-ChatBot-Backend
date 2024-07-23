@@ -129,9 +129,10 @@ const verifyUser = async (req, res) => {
 };
 const logout = async (req, res) => {
     try {
-        options ={
+        options = {
            httpOnly: true,
-           secure: true
+           secure: true,
+           sameSite: 'None'
         }
         // res.clearCookie(COOKIE_NAME, {
         //    httpOnly: true,
@@ -141,9 +142,10 @@ const logout = async (req, res) => {
         //    secure: true,
         //    sameSite: 'None'
         // });
-        return res.status(200).cclearCookie(COOKIE_NAME, options ).json({
-            message: "Logout Successful"
-        });
+        return res
+            .status(200)
+            .cclearCookie(COOKIE_NAME, options)
+            .json({message: "Logout Successful"});
     }
     catch (error) {
         console.error("Error Login user:", error);
