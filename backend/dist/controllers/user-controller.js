@@ -132,7 +132,7 @@ const logout = async (req, res) => {
        const options = {
             path: "/",
             domain: "render-ai-chat-bot-backend.vercel.app",
-            httpOnly: true,
+            httpOnly: false,
             secure: true,
             signed: true,
             sameSite: 'None'
