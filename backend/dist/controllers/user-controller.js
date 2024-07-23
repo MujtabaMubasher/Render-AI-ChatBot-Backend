@@ -146,9 +146,10 @@ const logout = async (req, res) => {
         //    secure: true,
         //    sameSite: 'None'
         // });
-        res.clearCookie(COOKIE_NAME, options)
+      //  res.clearCookie(COOKIE_NAME, options)
         return res
             .status(200)
+            .clearCookie(COOKIE_NAME, options)
             .json({message: "Logout Successful"});
     }
     catch (error) {
