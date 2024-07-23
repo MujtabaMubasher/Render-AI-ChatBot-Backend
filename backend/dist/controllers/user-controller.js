@@ -145,7 +145,7 @@ const logout = async (req, res) => {
         //    secure: true,
         //    sameSite: 'None'
         // });
-        res.cclearCookie(COOKIE_NAME, options)
+        res.clearCookie(COOKIE_NAME, options)
         return res
             .status(200)
             .json({message: "Logout Successful"});
