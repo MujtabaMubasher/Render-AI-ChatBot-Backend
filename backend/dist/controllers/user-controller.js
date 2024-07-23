@@ -132,6 +132,7 @@ const logout = async (req, res) => {
        const options = {
             httpOnly: true,
             secure: true,
+            signed: true,
             sameSite: 'None'
            
         }
