@@ -131,7 +131,9 @@ const logout = async (req, res) => {
     try {
        const options = {
             httpOnly: true,
-            secure: true
+            secure: true,
+            sameSite: 'None'
+           
         }
         // res.clearCookie(COOKIE_NAME, {
         //    httpOnly: true,
